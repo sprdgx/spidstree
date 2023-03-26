@@ -19,7 +19,7 @@ export default function Login () {
         if (resp.error) throw resp.error
         const userId= resp.data.user?.id
         console.log('userId:' , userId)
-        router.push('/ssprrdd');
+        router.push('/logedin');
 }
     } catch {
          

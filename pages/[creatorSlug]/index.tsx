@@ -167,7 +167,7 @@ export default function Home() {
 <div className="bg-blue-300  lg:w-1/2 rounded-3xl flex flex-col py-[3rem] w-10/12 items-center place-content-center mt-5 mx-[2rem]">
         <div className='text-3xl text-white font-mono'> • Your Links </div>
           <div> {link?.map((link: Link, index: number) =>
-                <div className='bg-white mt-3 cursor-pointer  w-1/8 p-2 px-10 rounded-xl font-bold text-blue-300 shadow-gray-400 shadow-lg'
+                <div className='bg-white mt-3 cursor-pointer text-sm w-1/8 p-2 px-10 rounded-xl font-bold text-blue-300 shadow-gray-400 shadow-lg'
                  key={index} onClick={(e) => {
                   e.preventDefault(); window.location.href = link.url
                 }}>{link.title}
@@ -206,9 +206,9 @@ export default function Home() {
       </>
       <>
     <div className="hidden lg:inline bg-blue-300 mr-5 lg:w-1/5 rounded-3xl py-[1rem] mt-5 items-center">
-        <div className=" ml-4 flex-col"> 
+        <div className="flex-col"> 
         
-        { images.length > 0 && (<img src={images[0] ['data_url']} alt="" />) }
+        { images.length > 0 && (<img className='px-3 py-3 rounded-full' src={images[0] ['data_url']} alt="" />) }
 
         <ImageUploading
         multiple
@@ -226,18 +226,17 @@ export default function Home() {
           isDragging,
           dragProps
         }: any) => (
-          <div className="upload__image-wrapper ">
-            { images.length === 0 ? (<button className='bg-white p-2 px-4 text-blue-300 shadow-md rounded-lg mt-5 shadow-gray-200 ml-5' style={isDragging ? { color: "red" } : undefined} onClick={onImageUpload} {...dragProps}>Upload A Profile Picture</button>) : (
-
-                <div className="image-item__btn-wrapper">
+          <div className="upload__image-wrapper  ">
+            { images.length === 0 ? (<button className='bg-white p-2 px-4 text-blue-300 shadow-md rounded-lg mt-5 shadow-gray-200 ml-9' style={isDragging ? { color: "red" } : undefined} onClick={onImageUpload} {...dragProps}>Upload A Profile Picture</button>) : (
+                <div className="image-item__btn-wrapper ml-2">
                   <button className='bg-green-200 p-2 px-5 text-blue-300 font-bold shadow-md rounded-lg mt-5 shadow-red-200 ml-5' onClick={onImageUpdate}>Update</button>
-                  <button className='bg-red-200 p-2 px-5 text-blue-300 font-bold shadow-md rounded-lg mt-5 shadow-green-200 ml-4' onClick={onImageRemove}>Remove</button>
+                  <button className='bg-red-200 p-2 px-5 text-blue-300 font-bold shadow-md rounded-lg mt-5 shadow-green-200 ml-5' onClick={onImageRemove}>Remove</button>
                 </div>
             )}   
           </div>
         )}
       </ImageUploading>
-      <button className='bg-white py-2 w-1/2 font-bold text-blue-300 shadow-md rounded-lg mt-5 shadow-gray-200 ml-[3.5rem] '  onClick={UploadProfileData} >Upload Image</button>
+      <button className='bg-white py-2 w-1/2 font-bold text-blue-300 shadow-md rounded-lg my-5 shadow-gray-200 ml-[4.2rem] '  onClick={UploadProfileData} >Upload Image</button>
       </div> 
     </div>
 </>
