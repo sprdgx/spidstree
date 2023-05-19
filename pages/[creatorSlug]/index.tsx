@@ -7,7 +7,6 @@ import ImageUploading, { ImageListType } from "react-images-uploading";
 import React from 'react';
 import { useRouter } from "next/router";
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 

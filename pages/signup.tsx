@@ -88,7 +88,7 @@ async function createUser(userId:string) {
     </div>
 </div>
     <div className=" font-mono	" onClick={signUpWithEmail}>
-        <button className="bg-white w-full p-2 px-10 rounded-xl font-bold text-blue-300  my-3 shadow-white shadow-sm" >Sign Up</button>
+        <button onClick={LoggedIn} className="bg-white w-full p-2 px-10 rounded-xl font-bold text-blue-300  my-3 shadow-white shadow-sm" >Sign Up</button>
     </div>
     <div onClick={LoggedIn}>
         <h1 className="text-xs text-white underline w-full text-right px-10 mr-[10rem] lg:mr-[18rem] mb-4 cursor-pointer">Signed Up?   </h1>
