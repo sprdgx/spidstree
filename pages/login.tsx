@@ -1,15 +1,56 @@
 import supabase from "@/utils/supabaseClient";
 import Head from "next/head";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/router";
 
 
 
 export default function Login () {
+    const router = useRouter();
+    const [usernameLink , setUsernameLink] = useState <string | undefined>();
+    const [userId, setUserId] = useState<string | undefined>();
+  
+    useEffect(() => {
+      const getUser = async () => {
+        const user= await supabase.auth.getUser();
+        if (user ){
+          const userID= user.data.user?.id
+          setUserId(userID)
+        }
+      }
+      getUser(); 
+    
+    }, []);
+  
+    useEffect(() => {
+      const fetchUsername = async () => {
+        if (userId) {
+          try {
+            const { data, error } = await supabase
+              .from('users')
+              .select('username')
+              .eq('id', userId);
+    
+            if (error) {
+              throw error;
+            }
+    
+            if (data && data.length > 0) {
+                
+              const username = data[0].username;
+              setUsernameLink(username);
+            }
+          } catch (error) {
+            console.log('Error:', error);
+          }
+        }
+      };
+    
+      fetchUsername();
+    }, [userId]);
 
     const [email , setEmail] = useState <string | undefined>();
     const [password , setPassword] = useState <string | undefined>();
-    const router = useRouter();
 
 
     async function signInWithEmail() {
@@ -19,7 +60,9 @@ export default function Login () {
         if (resp.error) throw resp.error
         const userId= resp.data.user?.id
         console.log('userId:' , userId)
-        router.push('/logedin');
+        if (usernameLink) {
+            router.push(`/${encodeURIComponent(usernameLink)}`);
+          }
 }
     } catch {
          
